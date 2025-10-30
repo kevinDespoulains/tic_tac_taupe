@@ -1,16 +1,41 @@
-# tic_tac_taupe
+# TicTacTaupe App
 
-A new Flutter project.
+## 1. Overview 👀
 
-## Getting Started
+This project is a Flutter technical test implementation. It consists of a TicTacToe game where the player can play against the computer.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## 2. Implementation steps 🔧
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This section contains the steps I will follow to create the game. For each step, I will log the time I've spent on it.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-   **1. Thinking 🤔**
+    - [X] Think about the features and list them below (~20min)
+    - [X] Create the design on Figma - using AI, I'm not a pro designer 😅 - (~30min)
+    - [X] Project setup (dependencies, routing, linter rules, etc) (~10min)
+
+-   **Main Menu 📃**
+    - [] Create the main menu screen
+    - [] Add the AI difficulty selection
+    - [] AImplement game start (navigation)
+    - [] Add unit tests
+    
+-   **Game Screen 🕹️**
+    - [] Create the AI logic
+    - [] Add the game state logic
+    - [] Add unit tests
+    - [] Create assets and Rive animations
+    - [] Create game screen
+    - [] Create end game (game over + restart game)
+
+
+## 3. Features 🤖
+
+-   **Main Menu:**
+    -   Select the AI difficulty (easy, medium, hard)
+    -   Start the game
+-   **Game Screen:**
+    -   Click a tile on the TicTacToe game
+    -   Watch the computer play
+    -   Display the win/lose screen
+    -   Restart game or go back to main menu
