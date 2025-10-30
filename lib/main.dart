@@ -4,7 +4,7 @@ import 'package:tic_tac_taupe/features/navigation/router.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const _TicTacTaupeApp());
+  runApp(const ProviderScope(child: _TicTacTaupeApp()));
 }
 
 class _TicTacTaupeApp extends ConsumerWidget {

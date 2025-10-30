@@ -9,14 +9,15 @@ This project is a Flutter technical test implementation. It consists of a TicTac
 
 This section contains the steps I will follow to create the game. For each step, I will log the time I've spent on it.
 
--   **1. Thinking 🤔**
-    - [X] Think about the features and list them below (~20min)
-    - [X] Create the design on Figma - using AI, I'm not a pro designer 😅 - (~30min)
-    - [X] Project setup (dependencies, routing, linter rules, etc) (~10min)
+-   **1. Thinking 🤔** (~1h30)
+    - [X] Think about the features and list them below
+    - [X] Create the design on Figma - using AI, I'm not a pro designer 😅 - 
+    - [X] Project setup (dependencies, routing, linter rules, etc)
+    - [X] Themes setup
 
 -   **Main Menu 📃**
-    - [] Create the main menu screen
-    - [] Add the AI difficulty selection
+    - [X] Create the main menu screen
+    - [X] Add the AI difficulty selection
     - [] AImplement game start (navigation)
     - [] Add unit tests
     

@@ -87,16 +87,16 @@
     },
     "Get semanticColorTheme": {
         "prefix": "colorTheme",
-        "description": "Retrieve colorTheme from context in a variable",
+        "description": "Retrieve colorTheme from ref in a variable",
         "body": [
-            "final colorTheme = context.colorTheme;",
+            "final colorTheme = ref.watch(colorThemeDataProvider);",
         ],
     },
     "Get semanticTextTheme": {
         "prefix": "textTheme",
-        "description": "Retrieve textTheme from context in a variable",
+        "description": "Retrieve textTheme from ref in a variable",
         "body": [
-            "final textTheme = context.textTheme;",
+            "final textTheme = ref.watch(textThemeDataProvider);",
         ],
     },
     "Flutter stateless widget with child": {
@@ -126,7 +126,7 @@
         "body": [
             "import 'package:riverpod_annotation/riverpod_annotation.dart';",
             "",
-            "part '${TM_FILENAME_BASE}.g.dart';", 
+            "part '${TM_FILENAME_BASE}.g.dart';",
             "",
             "@riverpod",
             "class ${1}Notifier extends _$${1}Notifier {",
@@ -134,7 +134,7 @@
             "  ${2} build() {",
             "    return ${2}();",
             "  }",
-            "", 
+            "",
             "}"
         ]
     }

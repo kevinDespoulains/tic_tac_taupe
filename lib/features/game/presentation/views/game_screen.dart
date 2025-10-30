@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:tic_tac_taupe/core/widgets/scaffold/app_scaffold.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({
@@ -7,6 +8,6 @@ class GameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const AppScaffold();
   }
 }

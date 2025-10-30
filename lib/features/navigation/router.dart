@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/game_screen.dart';
@@ -12,12 +13,40 @@ GoRouter goRouter(Ref ref) {
       // Home route
       GoRoute(
         path: '/',
-        builder: (context, state) => const HomeScreen(),
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const HomeScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: CurveTween(
+                      curve: Curves.easeInOutCirc,
+                    ).animate(animation),
+                    child: child,
+                  );
+                },
+          );
+        },
       ),
       // Game route
       GoRoute(
         path: '/game',
-        builder: (context, state) => const GameScreen(),
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: const GameScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: CurveTween(
+                      curve: Curves.easeInOutCirc,
+                    ).animate(animation),
+                    child: child,
+                  );
+                },
+          );
+        },
       ),
     ],
   );
