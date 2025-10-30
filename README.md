@@ -15,11 +15,11 @@ This section contains the steps I will follow to create the game. For each step,
     - [X] Project setup (dependencies, routing, linter rules, etc)
     - [X] Themes setup
 
--   **Main Menu 📃**
+-   **Main Menu 📃** (~2h)
     - [X] Create the main menu screen
     - [X] Add the AI difficulty selection
-    - [] AImplement game start (navigation)
-    - [] Add unit tests
+    - [X] Implement game start (navigation)
+    - [X] Add unit tests
     
 -   **Game Screen 🕹️**
     - [] Create the AI logic
