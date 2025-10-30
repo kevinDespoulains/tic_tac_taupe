@@ -1,0 +1,141 @@
+{
+    "Flutter stateless widget": {
+        "scope": "dart",
+        "prefix": "sless",
+        "description": "Insert a StatelessWidget",
+        "body": [
+            "class $1 extends StatelessWidget {",
+            "  const $1({",
+            "    super.key,",
+            "  });",
+            "",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "    return Container();",
+            "  }",
+            "}"
+        ]
+    },
+    "Flutter stateful widget": {
+        "scope": "dart",
+        "prefix": "sful",
+        "description": "Insert a StatefulWidget",
+        "body": [
+            "class $1 extends StatefulWidget {",
+            "  const $1({",
+            "    super.key,",
+            "  });",
+            "",
+            "  @override",
+            "  State<$1> createState() => _$1State();",
+            "}",
+            "",
+            "class _$1State extends State<$1> {",
+            "  @override",
+            "  void initState() {",
+            "    super.initState();",
+            "  }",
+            "",
+            "  @override",
+            "  void dispose() {",
+            "    super.dispose();",
+            "  }",
+            "",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "    return Container();",
+            "  }",
+            "}"
+        ]
+    },
+    "Generate freezed class": {
+        "prefix": "freezed",
+        "body": [
+            "import 'package:freezed_annotation/freezed_annotation.dart';",
+            "",
+            "part '${TM_FILENAME_BASE}.freezed.dart';",
+            "",
+            "@freezed",
+            "class $1 with _$$1 {",
+            "    const factory $1() = _$1;",
+            "}"
+        ]
+    },
+    "Generate part directive": {
+        "prefix": "part",
+        "body": [
+            "part '${TM_FILENAME_BASE}.freezed.dart';",
+        ]
+    },
+    "From JSON": {
+        "prefix": "fromJson",
+        "body": [
+            "factory ${1}.fromJson(Map<String, dynamic> json) => _$${1}FromJson(json);"
+        ],
+        "description": "From JSON"
+    },
+    "Generate single_freezed class": {
+        "prefix": "sfreezed",
+        "body": [
+            "@freezed",
+            "class $1 with _$$1 {",
+            "  const factory $1() = _$1;",
+            "",
+            "  factory $1.fromJson(Map<String, dynamic> json) => _$$1FromJson(json);",
+            "}"
+        ]
+    },
+    "Get semanticColorTheme": {
+        "prefix": "colorTheme",
+        "description": "Retrieve colorTheme from context in a variable",
+        "body": [
+            "final colorTheme = context.colorTheme;",
+        ],
+    },
+    "Get semanticTextTheme": {
+        "prefix": "textTheme",
+        "description": "Retrieve textTheme from context in a variable",
+        "body": [
+            "final textTheme = context.textTheme;",
+        ],
+    },
+    "Flutter stateless widget with child": {
+        "scope": "dart",
+        "prefix": "slessc",
+        "description": "Insert a StatelessWidget with a child",
+        "body": [
+            "class $1 extends StatelessWidget {",
+            "  const $1({",
+            "    super.key,",
+            "    required this.child,",
+            "  });",
+            "",
+            "  final Widget child;",
+            "",
+            "  @override",
+            "  Widget build(BuildContext context) {",
+            "    return Container();",
+            "  }",
+            "}"
+        ]
+    },
+    "Riverpod notifier": {
+        "scope": "dart",
+        "prefix": "notifier",
+        "description": "Insert a Riverpod notifier",
+        "body": [
+            "import 'package:riverpod_annotation/riverpod_annotation.dart';",
+            "",
+            "part '${TM_FILENAME_BASE}.g.dart';", 
+            "",
+            "@riverpod",
+            "class ${1}Notifier extends _$${1}Notifier {",
+            "@override",
+            "  ${2} build() {",
+            "    return ${2}();",
+            "  }",
+            "", 
+            "}"
+        ]
+    }
+}
