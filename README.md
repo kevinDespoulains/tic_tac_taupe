@@ -20,16 +20,16 @@ This section contains the steps I will follow to create the game. For each step,
     - [X] Add the AI difficulty selection
     - [X] Implement game start (navigation)
     - [X] Add unit tests
-    - [] Persist the bot difficulty to storage
+    - [X] Persist the bot difficulty to storage
     
--   **Game Screen 🕹️** (~8h)
+-   **Game Screen 🕹️** (~10h)
     - [X] Create the AI logic
     - [X] Add the game state logic
-    - [] Add unit tests
+    - [X] Add unit tests
     - [X] Create assets and Rive animations
     - [X] Create game screen
-    - [] Create end game (game over + restart game)
-
+    - [X] Create end game
+    - [X] Add audio
 
 ## 3. Features 🤖
 

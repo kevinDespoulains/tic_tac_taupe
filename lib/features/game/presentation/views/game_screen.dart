@@ -66,15 +66,17 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        spacing: 8,
-        children: [
-          _HelpButton(),
-          _HomeButton(),
-        ],
+    return const SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          spacing: 8,
+          children: [
+            _HelpButton(),
+            _HomeButton(),
+          ],
+        ),
       ),
     );
   }
@@ -302,9 +304,7 @@ class _MoleDialog extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(32, 100, 72, 16),
-      child: MoleDialog(
-        text: text,
-      ),
+      child: MoleDialog(text: text),
     );
   }
 }
