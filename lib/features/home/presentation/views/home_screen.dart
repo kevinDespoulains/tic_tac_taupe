@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tic_tac_taupe/core/i18n/localizations.dart';
 import 'package:tic_tac_taupe/core/themes/dependencies_injection.dart';
 import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
 import 'package:tic_tac_taupe/core/widgets/card/app_card.dart';
@@ -87,7 +88,7 @@ class _Title extends ConsumerWidget {
     final textTheme = ref.watch(textThemeDataProvider);
 
     return AppText(
-      'Tic Tac Taupe',
+      AppLocalizations.appTitle,
       style: textTheme.title1.copyWith(color: colorTheme.primary.variant.base),
       borderColor: colorTheme.surface.onSurface,
       borderWidth: 8,
@@ -112,31 +113,9 @@ class _Menu extends ConsumerWidget {
         borderWidth: 2,
         child: const Padding(
           padding: EdgeInsets.all(16),
-          child: Column(
-            spacing: 8,
-            children: [
-              _MenuTitle(),
-              BotDifficultySelection(),
-            ],
-          ),
+          child: BotDifficultySelection(),
         ),
       ),
-    );
-  }
-}
-
-class _MenuTitle extends ConsumerWidget {
-  const _MenuTitle();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final textTheme = ref.watch(textThemeDataProvider);
-
-    return AppText(
-      'Niveau de l\'adversaire',
-      style: textTheme.title2,
-      overflow: TextOverflow.ellipsis,
-      textAlign: TextAlign.center,
     );
   }
 }
@@ -202,7 +181,7 @@ class _StartGameButtonState extends State<_StartGameButton>
         );
       },
       child: AppButton(
-        text: 'Jouer !',
+        text: AppLocalizations.startGameLabel,
         size: AppButtonSize.large,
         onPressed: () {
           context.go(AppRoutes.game);

@@ -1,3 +1,4 @@
+import 'package:tic_tac_taupe/core/i18n/localizations.dart';
 import 'package:tic_tac_taupe/features/game/data/sources/tic_tac_toe_bot_ai.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/invalid_move_exception.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_board.dart';
@@ -54,7 +55,7 @@ class TicTacToeGameRepositoryImpl implements TicTacToeGameRepository {
     }
 
     throw const BadUserInputException(
-      errorMessage: 'Cette case est déjà occupée. Choisis-en une autre !',
+      errorMessage: AppLocalizations.occupiedCellException,
     );
   }
 }

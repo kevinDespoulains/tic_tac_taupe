@@ -1,3 +1,5 @@
+import 'package:tic_tac_taupe/core/i18n/localizations.dart';
+
 abstract class InvalidMoveException implements Exception {
   const InvalidMoveException();
 
@@ -29,5 +31,5 @@ class WrongPlayerTurnException implements InvalidMoveException {
   const WrongPlayerTurnException();
 
   @override
-  String get message => "Ce n'est pas à ton tour de jouer !";
+  String get message => AppLocalizations.wrongPlayerTurnException;
 }

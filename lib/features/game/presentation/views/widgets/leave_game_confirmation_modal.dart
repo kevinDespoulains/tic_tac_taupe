@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tic_tac_taupe/core/i18n/localizations.dart';
 import 'package:tic_tac_taupe/core/themes/dependencies_injection.dart';
 import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
 import 'package:tic_tac_taupe/core/widgets/modal/app_modal.dart';
@@ -40,7 +41,7 @@ class _Title extends ConsumerWidget {
     final textTheme = ref.watch(textThemeDataProvider);
 
     return AppText(
-      'Tu souhaites vraiment quitter la partie ?',
+      AppLocalizations.leaveGameConfirmationTitle,
       style: textTheme.label1,
     );
   }
@@ -54,7 +55,7 @@ class _Subtitle extends ConsumerWidget {
     final textTheme = ref.watch(textThemeDataProvider);
 
     return AppText(
-      'Les taupes risquent d\'en profiter pour s\'échapper !',
+      AppLocalizations.leaveGameConfirmationSubtitle,
       style: textTheme.body,
     );
   }
@@ -67,7 +68,7 @@ class _LeaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton(
       type: AppButtonType.negative,
-      text: 'Quitter',
+      text: AppLocalizations.leaveGameLabel,
       onPressed: () {
         context.go(AppRoutes.home);
       },
@@ -82,7 +83,7 @@ class _CancelButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton(
       type: AppButtonType.secondary,
-      text: 'Annuler',
+      text: AppLocalizations.cancelLabel,
       onPressed: () {
         Navigator.of(context).pop();
       },

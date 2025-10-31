@@ -74,7 +74,7 @@ class _AnimatedMoleState extends State<_AnimatedMole> {
     super.didUpdateWidget(oldWidget);
 
     if (widget.isKnockedOut && !oldWidget.isKnockedOut) {
-      _controller.trigger('Knock');
+      _controller.trigger(_MoleTriggers.knock);
     }
 
     if (widget.isProtected && !oldWidget.isProtected) {
@@ -83,18 +83,18 @@ class _AnimatedMoleState extends State<_AnimatedMole> {
 
     if (widget.isVisible != oldWidget.isVisible) {
       if (!widget.isVisible) {
-        _controller.trigger('Hide');
+        _controller.trigger(_MoleTriggers.hide);
       } else {
-        _controller.trigger('Show');
+        _controller.trigger(_MoleTriggers.show);
       }
     }
   }
 
   Future<void> _putHelmetOn() async {
-    _controller.trigger('Hide');
+    _controller.trigger(_MoleTriggers.hide);
     await Future.delayed(const Duration(milliseconds: 500));
-    _controller.trigger('Put Helmet');
-    _controller.trigger('Show');
+    _controller.trigger(_MoleTriggers.putHelmet);
+    _controller.trigger(_MoleTriggers.show);
   }
 
   @override
@@ -104,10 +104,19 @@ class _AnimatedMoleState extends State<_AnimatedMole> {
       controller: _controller,
       onLoaded: (controller) {
         if (widget.isVisible) {
-          _controller.trigger('Show');
+          _controller.trigger(_MoleTriggers.show);
         }
       },
       builder: (child) => child,
     );
   }
+}
+
+abstract class _MoleTriggers {
+  const _MoleTriggers._();
+
+  static const String show = 'Show';
+  static const String hide = 'Hide';
+  static const String knock = 'Knock';
+  static const String putHelmet = 'Put Helmet';
 }

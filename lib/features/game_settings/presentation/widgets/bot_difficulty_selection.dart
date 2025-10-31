@@ -1,14 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tic_tac_taupe/core/i18n/localizations.dart';
 import 'package:tic_tac_taupe/core/themes/dependencies_injection.dart';
 import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
+import 'package:tic_tac_taupe/core/widgets/text/app_text.dart';
 import 'package:tic_tac_taupe/features/game_settings/domain/models/game_settings.dart';
 import 'package:tic_tac_taupe/features/game_settings/presentation/states/game_settings_state.dart';
 
-class BotDifficultySelection extends ConsumerWidget {
+class BotDifficultySelection extends StatelessWidget {
   const BotDifficultySelection({
     super.key,
   });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      spacing: 8,
+      children: [
+        _Title(),
+        _DifficultySelector(),
+      ],
+    );
+  }
+}
+
+class _Title extends ConsumerWidget {
+  const _Title();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final textTheme = ref.watch(textThemeDataProvider);
+
+    return AppText(
+      AppLocalizations.botDifficultyTitle,
+      style: textTheme.title2,
+      overflow: TextOverflow.ellipsis,
+      textAlign: TextAlign.center,
+    );
+  }
+}
+
+class _DifficultySelector extends ConsumerWidget {
+  const _DifficultySelector();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,15 +87,15 @@ class _LoadedBody extends StatelessWidget {
       spacing: 8,
       children: [
         _BotDifficultySelectionButton(
-          label: 'Facile',
+          label: AppLocalizations.botDifficultyEasy,
           difficulty: BotDifficulty.easy,
         ),
         _BotDifficultySelectionButton(
-          label: 'Moyen',
+          label: AppLocalizations.botDifficultyMedium,
           difficulty: BotDifficulty.medium,
         ),
         _BotDifficultySelectionButton(
-          label: 'Difficile',
+          label: AppLocalizations.botDifficultyHard,
           difficulty: BotDifficulty.hard,
         ),
       ],
