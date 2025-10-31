@@ -16,7 +16,7 @@ class GameOverModal extends StatelessWidget with ShowableAppModal {
     required this.result,
   });
 
-  final TitTacToeGameResult result;
+  final TicTacToeGameResult result;
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +41,14 @@ class _Title extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final result = context.watchInheritedData<TitTacToeGameResult>();
+    final result = context.watchInheritedData<TicTacToeGameResult>();
     final textTheme = ref.watch(textThemeDataProvider);
 
     return AppText(
       switch (result) {
-        TitTacToeGameResult.playerWin => 'Félicitations ! Tu as gagné !',
-        TitTacToeGameResult.botWin => 'Oh non ! Les taupes ont gagné !',
-        TitTacToeGameResult.draw => 'Match nul !',
+        TicTacToeGameResult.playerWin => 'Félicitations ! Tu as gagné !',
+        TicTacToeGameResult.botWin => 'Oh non ! Les taupes ont gagné !',
+        TicTacToeGameResult.draw => 'Match nul !',
       },
       style: textTheme.label1,
     );
@@ -60,16 +60,16 @@ class _Subtitle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final result = context.watchInheritedData<TitTacToeGameResult>();
+    final result = context.watchInheritedData<TicTacToeGameResult>();
     final textTheme = ref.watch(textThemeDataProvider);
 
     return AppText(
       switch (result) {
-        TitTacToeGameResult.playerWin =>
+        TicTacToeGameResult.playerWin =>
           'Ton jardin est maintenant en sécurité !',
-        TitTacToeGameResult.botWin =>
+        TicTacToeGameResult.botWin =>
           'Tu les auras peut-être la prochaine fois !',
-        TitTacToeGameResult.draw =>
+        TicTacToeGameResult.draw =>
           'Tu es au moins aussi rusé qu\'une taupe...',
       },
       style: textTheme.body,

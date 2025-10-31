@@ -10,7 +10,7 @@ part 'tic_tac_toe_game_state_notifier.g.dart';
 
 @riverpod
 class TicTacToeGameStateNotifier extends _$TicTacToeGameStateNotifier {
-  static const _botDelay = Duration(milliseconds: 500);
+  static const _botDelay = Duration(milliseconds: 2000);
 
   @override
   TicTacToeGame build() => const TicTacToeGame();
@@ -22,7 +22,7 @@ class TicTacToeGameStateNotifier extends _$TicTacToeGameStateNotifier {
 
     if (!state.isPlayerTurn) {
       Future.delayed(
-        _botDelay + const Duration(milliseconds: 1500),
+        _botDelay,
         () async => _addBotSymbol(),
       );
     }

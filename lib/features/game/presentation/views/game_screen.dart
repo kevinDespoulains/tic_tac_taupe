@@ -6,11 +6,14 @@ import 'package:tic_tac_taupe/core/themes/assets/assets.dart';
 import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
 import 'package:tic_tac_taupe/core/widgets/logic_loader/logic_loader.dart';
 import 'package:tic_tac_taupe/core/widgets/scaffold/app_scaffold.dart';
+import 'package:tic_tac_taupe/features/game/domain/models/invalid_move_exception.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_board.dart';
+import 'package:tic_tac_taupe/features/game/presentation/states/mole_dialogs_state.dart';
 import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state_notifier.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/game_over_modal.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/leave_game_confirmation_modal.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/mole.dart';
+import 'package:tic_tac_taupe/features/game/presentation/views/widgets/mole_dialog.dart';
 
 class GameScreen extends ConsumerWidget {
   const GameScreen({
@@ -189,8 +192,13 @@ class _MoleState extends ConsumerState<_Mole> {
                 await ref
                     .read(ticTacToeGameStateProvider.notifier)
                     .addPlayerSymbol(widget.index);
-              } catch (e) {
-                // TODO(kevin): handle errors
+              } on InvalidMoveException catch (e) {
+                final message = e.message;
+                if (message != null) {
+                  ref
+                      .read(moleDialogsStateProvider.notifier)
+                      .setDialog(message);
+                }
               }
             }
           : null,
@@ -203,14 +211,6 @@ class _Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO(kevin): add mole dialog
-    // Tells to the player to play when they start
-    // Tells that the bot is starting
-    // Error messages
-    // Tells to the user it sees what they want to do
-    // Tells to the user it is closed to win
-    // Tells to the user there is no issue
-    // Tells to the user it will lead to a draw
     return const SizedBox(
       height: 200,
       child: Stack(
@@ -222,10 +222,9 @@ class _Footer extends StatelessWidget {
             right: 0,
             height: 180,
             width: 180,
-            child: Mole(
-              isVisible: true,
-            ),
+            child: Mole(isVisible: true),
           ),
+          Positioned.fill(child: _MoleDialog()),
         ],
       ),
     );
@@ -243,6 +242,26 @@ class _Mud extends StatelessWidget {
       fit: BoxFit.fitHeight,
       repeat: ImageRepeat.repeatX,
       alignment: Alignment.centerRight,
+    );
+  }
+}
+
+class _MoleDialog extends ConsumerWidget {
+  const _MoleDialog();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final text = ref.watch(moleDialogsStateProvider);
+
+    if (text == null) {
+      return const SizedBox.shrink();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(32, 100, 72, 16),
+      child: MoleDialog(
+        text: text,
+      ),
     );
   }
 }

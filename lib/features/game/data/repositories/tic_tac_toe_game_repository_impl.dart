@@ -53,6 +53,8 @@ class TicTacToeGameRepositoryImpl implements TicTacToeGameRepository {
       );
     }
 
-    throw const BadUserInputException();
+    throw const BadUserInputException(
+      errorMessage: 'Cette case est déjà occupée. Choisis-en une autre !',
+    );
   }
 }

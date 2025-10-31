@@ -42,7 +42,7 @@ final class TicTacToeGameStateNotifierProvider
 }
 
 String _$ticTacToeGameStateNotifierHash() =>
-    r'fe25ede638720b5efa2dcff73cd84453b9d4766e';
+    r'd17d339c26bc1401278f80cd5eeabb1ba347907c';
 
 abstract class _$TicTacToeGameStateNotifier extends $Notifier<TicTacToeGame> {
   TicTacToeGame build();

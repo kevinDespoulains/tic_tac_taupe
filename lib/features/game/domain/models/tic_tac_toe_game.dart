@@ -13,24 +13,32 @@ abstract class TicTacToeGame with _$TicTacToeGame {
 
   const TicTacToeGame._();
 
+  bool get isGameStarting => board.isEmpty;
+
   bool get isGameOver => board.isFull || board.hasCompletedLine;
 
-  TitTacToeGameResult? get result {
+  bool get hasPlayerTwoAlignedItems {
+    return board.hasTwoAlignedItems(TicTacToeSymbol.player);
+  }
+
+  bool get nobodyCanWin => board.nobodyCanWin;
+
+  TicTacToeGameResult? get result {
     if (!isGameOver) {
       return null;
     }
 
     if (board.hasCompletedLine) {
       return isPlayerTurn
-          ? TitTacToeGameResult.botWin
-          : TitTacToeGameResult.playerWin;
+          ? TicTacToeGameResult.botWin
+          : TicTacToeGameResult.playerWin;
     } else {
-      return TitTacToeGameResult.draw;
+      return TicTacToeGameResult.draw;
     }
   }
 }
 
-enum TitTacToeGameResult {
+enum TicTacToeGameResult {
   playerWin,
   botWin,
   draw,
