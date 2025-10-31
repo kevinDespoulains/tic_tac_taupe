@@ -5,24 +5,30 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tic_tac_taupe/core/themes/assets/assets.dart';
 import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
+import 'package:tic_tac_taupe/core/widgets/logic_loader/logic_loader.dart';
 import 'package:tic_tac_taupe/core/widgets/scaffold/app_scaffold.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_board.dart';
 import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state_notifier.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/mole.dart';
 import 'package:tic_tac_taupe/features/navigation/routes.dart';
 
-class GameScreen extends StatelessWidget {
+class GameScreen extends ConsumerWidget {
   const GameScreen({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // TODO(kevin): handle end of the game
 
-    return const AppScaffold(
-      appBar: _AppBar(),
-      body: _Body(),
+    return LogicLoader(
+      onLoad: (context) async {
+        await ref.read(ticTacToeGameStateProvider.notifier).resetGame();
+      },
+      child: const AppScaffold(
+        appBar: _AppBar(),
+        body: _Body(),
+      ),
     );
   }
 }
@@ -181,6 +187,13 @@ class _Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO(kevin): add mole dialog
+    // Tells to the player to play when they start
+    // Tells that the bot is starting
+    // Error messages
+    // Tells to the user it sees what they want to do
+    // Tells to the user it is closed to win
+    // Tells to the user there is no issue
+    // Tells to the user it will lead to a draw
     return const SizedBox(
       height: 200,
       child: Stack(

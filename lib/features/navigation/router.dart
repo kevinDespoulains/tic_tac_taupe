@@ -18,15 +18,7 @@ GoRouter goRouter(Ref ref) {
           return CustomTransitionPage(
             key: state.pageKey,
             child: const HomeScreen(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(
-                    opacity: CurveTween(
-                      curve: Curves.easeInOutCirc,
-                    ).animate(animation),
-                    child: child,
-                  );
-                },
+            transitionsBuilder: _appDefautTransitionBuilder,
           );
         },
       ),
@@ -37,18 +29,22 @@ GoRouter goRouter(Ref ref) {
           return CustomTransitionPage(
             key: state.pageKey,
             child: const GameScreen(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(
-                    opacity: CurveTween(
-                      curve: Curves.easeInOutCirc,
-                    ).animate(animation),
-                    child: child,
-                  );
-                },
+            transitionsBuilder: _appDefautTransitionBuilder,
           );
         },
       ),
     ],
+  );
+}
+
+Widget _appDefautTransitionBuilder(
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+) {
+  return FadeTransition(
+    opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+    child: child,
   );
 }

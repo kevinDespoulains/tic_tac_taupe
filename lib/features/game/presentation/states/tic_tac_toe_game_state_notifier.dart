@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tic_tac_taupe/features/game/dependencies_injection.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/invalid_move_exception.dart';
@@ -14,9 +16,16 @@ class TicTacToeGameStateNotifier extends _$TicTacToeGameStateNotifier {
   TicTacToeGame build() => const TicTacToeGame();
 
   /// Initializes the game state with a new game.
-  void initializeGame(TicTacToeGame game) {
-    // TODO(kevin): determine who starts the game
-    state = game;
+  Future<void> resetGame() async {
+    final random = Random();
+    state = TicTacToeGame(isPlayerTurn: random.nextBool());
+
+    if (!state.isPlayerTurn) {
+      await Future.delayed(
+        _botDelay + const Duration(milliseconds: 1500),
+        () async => _addBotSymbol(),
+      );
+    }
   }
 
   /// Adds the player's symbol to the specified cell index.

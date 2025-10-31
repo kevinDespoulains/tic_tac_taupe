@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:tic_tac_taupe/features/game/domain/models/invalid_move_exception.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_board.dart';
 
-
 /// Abstract class representing a Tic Tac Toe bot AI.
 abstract class TicTacToeBotAi {
   const TicTacToeBotAi();
@@ -40,7 +39,7 @@ class EasyTicTacToeBotAi extends TicTacToeBotAi {
 /// the optimal move (between 0.0 and 1.0).
 class MediumTicTacToeBotAi extends TicTacToeBotAi {
   const MediumTicTacToeBotAi({
-    this.optimalMoveProbability = 0.75,
+    this.optimalMoveProbability = 0.5,
   });
 
   final double optimalMoveProbability;
@@ -64,7 +63,7 @@ class MediumTicTacToeBotAi extends TicTacToeBotAi {
 
 /// A hard Tic Tac Toe bot that uses the Minimax algorithm to play optimally.
 /// This bot will never lose if played against.
-/// 
+///
 /// This bot has been implemented using AI assistance.
 class HardTicTacToeBotAi extends TicTacToeBotAi {
   const HardTicTacToeBotAi();
