@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeScreenState {
 
- BotDifficulty get botDifficulty;
+ GameSettings get gameSettings;
 /// Create a copy of HomeScreenState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $HomeScreenStateCopyWith<HomeScreenState> get copyWith => _$HomeScreenStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeScreenState&&(identical(other.botDifficulty, botDifficulty) || other.botDifficulty == botDifficulty));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeScreenState&&(identical(other.gameSettings, gameSettings) || other.gameSettings == gameSettings));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,botDifficulty);
+int get hashCode => Object.hash(runtimeType,gameSettings);
 
 @override
 String toString() {
-  return 'HomeScreenState(botDifficulty: $botDifficulty)';
+  return 'HomeScreenState(gameSettings: $gameSettings)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $HomeScreenStateCopyWith<$Res>  {
   factory $HomeScreenStateCopyWith(HomeScreenState value, $Res Function(HomeScreenState) _then) = _$HomeScreenStateCopyWithImpl;
 @useResult
 $Res call({
- BotDifficulty botDifficulty
+ GameSettings gameSettings
 });
 
 
-
+$GameSettingsCopyWith<$Res> get gameSettings;
 
 }
 /// @nodoc
@@ -62,13 +62,22 @@ class _$HomeScreenStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeScreenState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? botDifficulty = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? gameSettings = null,}) {
   return _then(_self.copyWith(
-botDifficulty: null == botDifficulty ? _self.botDifficulty : botDifficulty // ignore: cast_nullable_to_non_nullable
-as BotDifficulty,
+gameSettings: null == gameSettings ? _self.gameSettings : gameSettings // ignore: cast_nullable_to_non_nullable
+as GameSettings,
   ));
 }
-
+/// Create a copy of HomeScreenState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GameSettingsCopyWith<$Res> get gameSettings {
+  
+  return $GameSettingsCopyWith<$Res>(_self.gameSettings, (value) {
+    return _then(_self.copyWith(gameSettings: value));
+  });
+}
 }
 
 
@@ -150,10 +159,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( BotDifficulty botDifficulty)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GameSettings gameSettings)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeScreenState() when $default != null:
-return $default(_that.botDifficulty);case _:
+return $default(_that.gameSettings);case _:
   return orElse();
 
 }
@@ -171,10 +180,10 @@ return $default(_that.botDifficulty);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( BotDifficulty botDifficulty)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GameSettings gameSettings)  $default,) {final _that = this;
 switch (_that) {
 case _HomeScreenState():
-return $default(_that.botDifficulty);case _:
+return $default(_that.gameSettings);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,10 +200,10 @@ return $default(_that.botDifficulty);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( BotDifficulty botDifficulty)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GameSettings gameSettings)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeScreenState() when $default != null:
-return $default(_that.botDifficulty);case _:
+return $default(_that.gameSettings);case _:
   return null;
 
 }
@@ -206,10 +215,10 @@ return $default(_that.botDifficulty);case _:
 
 
 class _HomeScreenState implements HomeScreenState {
-  const _HomeScreenState({required this.botDifficulty});
+  const _HomeScreenState({required this.gameSettings});
   
 
-@override final  BotDifficulty botDifficulty;
+@override final  GameSettings gameSettings;
 
 /// Create a copy of HomeScreenState
 /// with the given fields replaced by the non-null parameter values.
@@ -221,16 +230,16 @@ _$HomeScreenStateCopyWith<_HomeScreenState> get copyWith => __$HomeScreenStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeScreenState&&(identical(other.botDifficulty, botDifficulty) || other.botDifficulty == botDifficulty));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeScreenState&&(identical(other.gameSettings, gameSettings) || other.gameSettings == gameSettings));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,botDifficulty);
+int get hashCode => Object.hash(runtimeType,gameSettings);
 
 @override
 String toString() {
-  return 'HomeScreenState(botDifficulty: $botDifficulty)';
+  return 'HomeScreenState(gameSettings: $gameSettings)';
 }
 
 
@@ -241,11 +250,11 @@ abstract mixin class _$HomeScreenStateCopyWith<$Res> implements $HomeScreenState
   factory _$HomeScreenStateCopyWith(_HomeScreenState value, $Res Function(_HomeScreenState) _then) = __$HomeScreenStateCopyWithImpl;
 @override @useResult
 $Res call({
- BotDifficulty botDifficulty
+ GameSettings gameSettings
 });
 
 
-
+@override $GameSettingsCopyWith<$Res> get gameSettings;
 
 }
 /// @nodoc
@@ -258,14 +267,23 @@ class __$HomeScreenStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeScreenState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? botDifficulty = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? gameSettings = null,}) {
   return _then(_HomeScreenState(
-botDifficulty: null == botDifficulty ? _self.botDifficulty : botDifficulty // ignore: cast_nullable_to_non_nullable
-as BotDifficulty,
+gameSettings: null == gameSettings ? _self.gameSettings : gameSettings // ignore: cast_nullable_to_non_nullable
+as GameSettings,
   ));
 }
 
-
+/// Create a copy of HomeScreenState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GameSettingsCopyWith<$Res> get gameSettings {
+  
+  return $GameSettingsCopyWith<$Res>(_self.gameSettings, (value) {
+    return _then(_self.copyWith(gameSettings: value));
+  });
+}
 }
 
 // dart format on

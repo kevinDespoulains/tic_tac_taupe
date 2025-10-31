@@ -6,7 +6,7 @@ import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
 import 'package:tic_tac_taupe/core/widgets/card/app_card.dart';
 import 'package:tic_tac_taupe/core/widgets/scaffold/app_scaffold.dart';
 import 'package:tic_tac_taupe/core/widgets/text/app_text.dart';
-import 'package:tic_tac_taupe/features/home/domain/models/home_screen_state.dart';
+import 'package:tic_tac_taupe/features/game_settings/domain/game_settings.dart';
 import 'package:tic_tac_taupe/features/home/presentation/states/home_screen_state.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -180,7 +180,7 @@ class _BotDifficultySelectionButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isSelected = ref.watch(
       homeScreenStateProvider.select(
-        (notifier) => notifier.botDifficulty == difficulty,
+        (notifier) => notifier.gameSettings.botDifficulty == difficulty,
       ),
     );
 

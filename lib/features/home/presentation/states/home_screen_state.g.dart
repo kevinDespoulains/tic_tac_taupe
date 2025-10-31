@@ -42,7 +42,7 @@ final class HomeScreenStateNotifierProvider
 }
 
 String _$homeScreenStateNotifierHash() =>
-    r'379e0fe8d832e6b36f45e50e800f111530563cd6';
+    r'ce94b1c88b910b575bc083195ae7250f93d4c15c';
 
 abstract class _$HomeScreenStateNotifier extends $Notifier<HomeScreenState> {
   HomeScreenState build();

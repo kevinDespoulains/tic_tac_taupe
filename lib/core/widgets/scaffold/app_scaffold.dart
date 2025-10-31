@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_taupe/core/theme/assets/assets.dart';
 
 /// The AppScaffold widget provides a scaffold a background image that should be used everywhere in the app.
 /// The Scaffold's body becomes scrollable if the available height is less than minimum required height.
 class AppScaffold extends StatelessWidget {
   const AppScaffold({
     super.key,
+    this.appBar,
     this.body,
   });
 
+  final PreferredSizeWidget? appBar;
   final Widget? body;
 
   @override
@@ -15,8 +18,10 @@ class AppScaffold extends StatelessWidget {
     final localBody = body;
 
     return Scaffold(
+      appBar: appBar,
+      extendBodyBehindAppBar: true,
       body: _ScrollableBody(
-        minHeight: 400,
+        minHeight: 600,
         body: Stack(
           children: [
             const Positioned.fill(child: _Background()),
@@ -63,7 +68,7 @@ class _Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/png/background.png',
+      Assets.background,
       fit: BoxFit.fitHeight,
       repeat: ImageRepeat.repeatX,
       alignment: Alignment.center,

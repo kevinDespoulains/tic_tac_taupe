@@ -16,6 +16,7 @@ class AppButton extends StatelessWidget {
     this.isSelected,
     this.type,
     this.size,
+    this.leadingIcon,
   });
 
   /// The text to display on the button.
@@ -35,12 +36,17 @@ class AppButton extends StatelessWidget {
   /// Defaults to [AppButtonSize.medium].
   final AppButtonSize? size;
 
+  /// The leading icon of the button.
+  /// If null, no icon is displayed.
+  final IconData? leadingIcon;
+
   @override
   Widget build(BuildContext context) {
     return AppPressable(
       onPressed: onPressed,
       child: _Body(
-        text: text,
+        text: text ?? '',
+        leadingIcon: leadingIcon,
         isSelected: isSelected ?? false,
         type: type ?? AppButtonType.primary,
         size: size ?? AppButtonSize.medium,
@@ -52,12 +58,14 @@ class AppButton extends StatelessWidget {
 class _Body extends ConsumerWidget {
   const _Body({
     required this.text,
+    required this.leadingIcon,
     required this.isSelected,
     required this.type,
     required this.size,
   });
 
-  final String? text;
+  final String text;
+  final IconData? leadingIcon;
   final bool isSelected;
   final AppButtonType type;
   final AppButtonSize size;
@@ -116,22 +124,31 @@ class _Body extends ConsumerWidget {
               opacity: 0,
               child: _SelectedIcon(),
             ),
-          Flexible(
-            child: AppText(
-              text ?? '',
-              style: size
-                  .textStyle(textTheme)
-                  .copyWith(
-                    color: isSelected
-                        ? colorTheme.success.on
-                        : type.foregroundColor(colorTheme),
-                  ),
-              textAlign: TextAlign.center,
-              borderColor: colorTheme.surface.onSurface,
-              borderWidth: size.textBorderWidth,
-              overflow: TextOverflow.ellipsis,
+          if (leadingIcon != null)
+            Icon(
+              leadingIcon,
+              color: type.foregroundColor(colorTheme),
+              size: 24,
             ),
-          ),
+          if (text.isNotEmpty)
+            Flexible(
+              child: AppText(
+                text,
+                style: size
+                    .textStyle(textTheme)
+                    .copyWith(
+                      color: isSelected
+                          ? colorTheme.success.on
+                          : type.foregroundColor(colorTheme),
+                    ),
+                textAlign: TextAlign.center,
+                borderColor: colorTheme.surface.onSurface,
+                borderWidth: size.textBorderWidth,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          // If there is a leading icon, we add a spacer to keep a good alignment
+          if (leadingIcon != null && text.isNotEmpty) const SizedBox.shrink(),
           if (isSelected) const _SelectedIcon(),
         ],
       ),
