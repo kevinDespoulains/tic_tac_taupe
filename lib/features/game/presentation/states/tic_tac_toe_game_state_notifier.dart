@@ -16,12 +16,12 @@ class TicTacToeGameStateNotifier extends _$TicTacToeGameStateNotifier {
   TicTacToeGame build() => const TicTacToeGame();
 
   /// Initializes the game state with a new game.
-  Future<void> resetGame() async {
+  void resetGame() {
     final random = Random();
     state = TicTacToeGame(isPlayerTurn: random.nextBool());
 
     if (!state.isPlayerTurn) {
-      await Future.delayed(
+      Future.delayed(
         _botDelay + const Duration(milliseconds: 1500),
         () async => _addBotSymbol(),
       );

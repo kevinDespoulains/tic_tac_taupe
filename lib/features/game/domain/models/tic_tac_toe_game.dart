@@ -14,4 +14,24 @@ abstract class TicTacToeGame with _$TicTacToeGame {
   const TicTacToeGame._();
 
   bool get isGameOver => board.isFull || board.hasCompletedLine;
+
+  TitTacToeGameResult? get result {
+    if (!isGameOver) {
+      return null;
+    }
+
+    if (board.hasCompletedLine) {
+      return isPlayerTurn
+          ? TitTacToeGameResult.botWin
+          : TitTacToeGameResult.playerWin;
+    } else {
+      return TitTacToeGameResult.draw;
+    }
+  }
+}
+
+enum TitTacToeGameResult {
+  playerWin,
+  botWin,
+  draw,
 }

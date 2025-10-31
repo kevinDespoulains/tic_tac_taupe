@@ -8,6 +8,7 @@ import 'package:tic_tac_taupe/core/widgets/logic_loader/logic_loader.dart';
 import 'package:tic_tac_taupe/core/widgets/scaffold/app_scaffold.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_board.dart';
 import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state_notifier.dart';
+import 'package:tic_tac_taupe/features/game/presentation/views/widgets/game_over_modal.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/leave_game_confirmation_modal.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/mole.dart';
 
@@ -18,11 +19,29 @@ class GameScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO(kevin): handle end of the game
-
     return LogicLoader(
       onLoad: (context) async {
-        await ref.read(ticTacToeGameStateProvider.notifier).resetGame();
+        ref.read(ticTacToeGameStateProvider.notifier).resetGame();
+
+        ref.listenManual(
+          ticTacToeGameStateProvider,
+          (previousState, state) {
+            final result = state.result;
+
+            if (!(previousState?.isGameOver ?? false) &&
+                state.isGameOver &&
+                result != null) {
+              Future.delayed(const Duration(milliseconds: 1000), () {
+                if (context.mounted) {
+                  GameOverModal(result: result).showMe(
+                    context,
+                    barriereDismissible: false,
+                  );
+                }
+              });
+            }
+          },
+        );
       },
       child: const AppScaffold(
         appBar: _AppBar(),
