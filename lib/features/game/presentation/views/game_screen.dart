@@ -1,12 +1,15 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tic_tac_taupe/core/theme/assets/assets.dart';
+import 'package:tic_tac_taupe/core/themes/assets/assets.dart';
 import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
 import 'package:tic_tac_taupe/core/widgets/scaffold/app_scaffold.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_board.dart';
 import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state_notifier.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/mole.dart';
+import 'package:tic_tac_taupe/features/navigation/routes.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({
@@ -15,6 +18,8 @@ class GameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO(kevin): handle end of the game
+
     return const AppScaffold(
       appBar: _AppBar(),
       body: _Body(),
@@ -50,7 +55,8 @@ class _HomeButton extends StatelessWidget {
     return AppButton(
       leadingIcon: Icons.home,
       onPressed: () {
-        context.go('/');
+        // TODO(kevin): confirm navigation
+        context.go(AppRoutes.home);
       },
     );
   }
@@ -106,7 +112,7 @@ class _Board extends StatelessWidget {
   }
 }
 
-class _Mole extends ConsumerWidget {
+class _Mole extends ConsumerStatefulWidget {
   const _Mole({
     required this.index,
   });
@@ -114,13 +120,32 @@ class _Mole extends ConsumerWidget {
   final int index;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_Mole> createState() => _MoleState();
+}
+
+class _MoleState extends ConsumerState<_Mole> {
+  bool _isVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final random = Random().nextDouble();
+    Future.delayed(Duration(milliseconds: (random * 1000).floor()), () {
+      if (mounted) {
+        setState(() {
+          _isVisible = true;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final (isKnockedOut, isProtected, isPlayerTurn) = ref.watch(
       ticTacToeGameStateProvider.select(
         (notifier) {
-          final (isKnockedOut, isProtected) = switch (notifier.board.symbolAt(
-            index,
-          )) {
+          final symbol = notifier.board.symbolAt(widget.index);
+          final (isKnockedOut, isProtected) = switch (symbol) {
             TicTacToeSymbol.bot => (false, true),
             TicTacToeSymbol.player => (true, false),
             _ => (false, false),
@@ -134,13 +159,13 @@ class _Mole extends ConsumerWidget {
     return Mole(
       isKnockedOut: isKnockedOut,
       isProtected: isProtected,
-      isVisible: true,
-      onTap: isPlayerTurn
+      isVisible: _isVisible,
+      onTap: _isVisible && isPlayerTurn
           ? () async {
               try {
                 await ref
                     .read(ticTacToeGameStateProvider.notifier)
-                    .addPlayerSymbol(index);
+                    .addPlayerSymbol(widget.index);
               } catch (e) {
                 // TODO(kevin): handle errors
               }
@@ -155,6 +180,7 @@ class _Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO(kevin): add mole dialog
     return const SizedBox(
       height: 200,
       child: Stack(

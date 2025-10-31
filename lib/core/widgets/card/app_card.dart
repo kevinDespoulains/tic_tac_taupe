@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tic_tac_taupe/core/theme/dependencies_injection.dart';
+import 'package:tic_tac_taupe/core/themes/dependencies_injection.dart';
 
 /// A card widget that displays content within a decorated box.
 class AppCard extends ConsumerWidget {

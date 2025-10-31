@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tic_tac_taupe/core/inherited_data/build_context_extensions.dart';
-import 'package:tic_tac_taupe/core/theme/colors/app_color_theme_data.dart';
-import 'package:tic_tac_taupe/core/theme/dependencies_injection.dart';
-import 'package:tic_tac_taupe/core/theme/texts/app_text_theme_data.dart';
+import 'package:tic_tac_taupe/core/themes/colors/app_color_theme_data.dart';
+import 'package:tic_tac_taupe/core/themes/dependencies_injection.dart';
+import 'package:tic_tac_taupe/core/themes/texts/app_text_theme_data.dart';
 import 'package:tic_tac_taupe/core/widgets/gestures/app_pressable.dart';
 import 'package:tic_tac_taupe/core/widgets/text/app_text.dart';
 

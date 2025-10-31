@@ -1,13 +1,13 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tic_tac_taupe/core/theme/dependencies_injection.dart';
+import 'package:tic_tac_taupe/core/themes/dependencies_injection.dart';
 import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
 import 'package:tic_tac_taupe/core/widgets/card/app_card.dart';
 import 'package:tic_tac_taupe/core/widgets/scaffold/app_scaffold.dart';
 import 'package:tic_tac_taupe/core/widgets/text/app_text.dart';
-import 'package:tic_tac_taupe/features/game_settings/domain/game_settings.dart';
-import 'package:tic_tac_taupe/features/home/presentation/states/home_screen_state.dart';
+import 'package:tic_tac_taupe/features/game_settings/presentation/widgets/bot_difficulty_selection.dart';
+import 'package:tic_tac_taupe/features/navigation/routes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -116,7 +116,7 @@ class _Menu extends ConsumerWidget {
             spacing: 8,
             children: [
               _MenuTitle(),
-              _BotDifficulty(),
+              BotDifficultySelection(),
             ],
           ),
         ),
@@ -141,64 +141,6 @@ class _MenuTitle extends ConsumerWidget {
   }
 }
 
-class _BotDifficulty extends StatelessWidget {
-  const _BotDifficulty();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      spacing: 8,
-      children: [
-        _BotDifficultySelectionButton(
-          label: 'Facile',
-          difficulty: BotDifficulty.easy,
-        ),
-        _BotDifficultySelectionButton(
-          label: 'Moyen',
-          difficulty: BotDifficulty.medium,
-        ),
-        _BotDifficultySelectionButton(
-          label: 'Difficile',
-          difficulty: BotDifficulty.hard,
-        ),
-      ],
-    );
-  }
-}
-
-class _BotDifficultySelectionButton extends ConsumerWidget {
-  const _BotDifficultySelectionButton({
-    required this.label,
-    required this.difficulty,
-  });
-
-  final String label;
-  final BotDifficulty difficulty;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isSelected = ref.watch(
-      homeScreenStateProvider.select(
-        (notifier) => notifier.gameSettings.botDifficulty == difficulty,
-      ),
-    );
-
-    return AppButton(
-      text: label,
-      isSelected: isSelected,
-      type: AppButtonType.secondary,
-      onPressed: isSelected
-          ? null
-          : () {
-              ref
-                  .read(homeScreenStateProvider.notifier)
-                  .setBotDifficulty(difficulty);
-            },
-    );
-  }
-}
-
 class _StartGameButton extends StatelessWidget {
   const _StartGameButton();
 
@@ -208,7 +150,7 @@ class _StartGameButton extends StatelessWidget {
       text: 'Jouer !',
       size: AppButtonSize.large,
       onPressed: () {
-        context.go('/game');
+        context.go(AppRoutes.game);
       },
     );
   }

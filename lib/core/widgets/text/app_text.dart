@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tic_tac_taupe/core/theme/dependencies_injection.dart';
+import 'package:tic_tac_taupe/core/themes/dependencies_injection.dart';
 
 /// A text widget that uses the app's theming for colors and styles.
 class AppText extends ConsumerWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/rendering.dart';
-import 'package:tic_tac_taupe/core/theme/colors/app_color_theme_data.dart';
+import 'package:tic_tac_taupe/core/themes/colors/app_color_theme_data.dart';
 
 /// A class that defines the different color themes available in the app.
 class ColorThemes {

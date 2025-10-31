@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:tic_tac_taupe/core/theme/assets/assets.dart';
+import 'package:tic_tac_taupe/core/themes/assets/assets.dart';
 import 'package:tic_tac_taupe/core/widgets/rive/rive_asset.dart';
 
 class Mole extends StatelessWidget {
@@ -102,6 +102,11 @@ class _AnimatedMoleState extends State<_AnimatedMole> {
     return RiveAsset(
       filePath: Assets.mole,
       controller: _controller,
+      onLoaded: (controller) {
+        if (widget.isVisible) {
+          _controller.trigger('Show');
+        }
+      },
       builder: (child) => child,
     );
   }

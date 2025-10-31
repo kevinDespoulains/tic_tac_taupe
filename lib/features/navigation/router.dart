@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/game_screen.dart';
 import 'package:tic_tac_taupe/features/home/presentation/views/home_screen.dart';
+import 'package:tic_tac_taupe/features/navigation/routes.dart';
 
 part 'router.g.dart';
 
@@ -12,7 +13,7 @@ GoRouter goRouter(Ref ref) {
     routes: [
       // Home route
       GoRoute(
-        path: '/',
+        path: AppRoutes.home,
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             key: state.pageKey,
@@ -31,7 +32,7 @@ GoRouter goRouter(Ref ref) {
       ),
       // Game route
       GoRoute(
-        path: '/game',
+        path: AppRoutes.game,
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             key: state.pageKey,

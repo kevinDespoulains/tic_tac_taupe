@@ -1,5 +1,5 @@
 import 'package:flutter/rendering.dart';
-import 'package:tic_tac_taupe/core/theme/texts/app_text_theme_data.dart';
+import 'package:tic_tac_taupe/core/themes/texts/app_text_theme_data.dart';
 
 /// A class that defines the different text themes available in the app.
 class TextThemes {

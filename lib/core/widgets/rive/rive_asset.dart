@@ -7,11 +7,13 @@ class RiveAsset extends StatefulWidget {
     required this.controller,
     required this.filePath,
     required this.builder,
+    this.onLoaded,
   });
 
   final RiveAssetController controller;
   final String filePath;
   final Widget Function(Widget child) builder;
+  final void Function(RiveAssetController controller)? onLoaded;
 
   @override
   State<RiveAsset> createState() => _RiveAssetState();
@@ -35,6 +37,7 @@ class _RiveAssetState extends State<RiveAsset> {
       fileLoader: fileLoader,
       onLoaded: (state) {
         widget.controller._controller = state.controller;
+        widget.onLoaded?.call(widget.controller);
       },
       builder: (context, state) => switch (state) {
         RiveLoading() => const SizedBox(),
