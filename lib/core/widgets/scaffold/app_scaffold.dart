@@ -20,44 +20,12 @@ class AppScaffold extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       extendBodyBehindAppBar: true,
-      body: _ScrollableBody(
-        minHeight: 600,
-        body: Stack(
-          children: [
-            const Positioned.fill(child: _Background()),
-            if (localBody != null) Positioned.fill(child: localBody),
-          ],
-        ),
+      body: Stack(
+        children: [
+          const Positioned.fill(child: _Background()),
+          if (localBody != null) Positioned.fill(child: localBody),
+        ],
       ),
-    );
-  }
-}
-
-class _ScrollableBody extends StatelessWidget {
-  const _ScrollableBody({
-    required this.minHeight,
-    required this.body,
-  });
-
-  final double minHeight;
-  final Widget body;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxHeight > minHeight) {
-          return body;
-        }
-
-        return SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: SizedBox(
-            height: minHeight,
-            child: body,
-          ),
-        );
-      },
     );
   }
 }

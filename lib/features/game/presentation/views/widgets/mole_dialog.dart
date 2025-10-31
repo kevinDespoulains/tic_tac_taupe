@@ -68,7 +68,7 @@ class _MoleDialogState extends State<MoleDialog> {
     return CustomPaint(
       painter: const _BubblePainter(),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
+        padding: const EdgeInsets.fromLTRB(12, 20, 12, 8),
         child: AppText(
           _displayedText,
           overflow: TextOverflow.ellipsis,

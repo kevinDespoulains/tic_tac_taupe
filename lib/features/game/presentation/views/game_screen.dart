@@ -302,9 +302,13 @@ class _MoleDialog extends ConsumerWidget {
       return const SizedBox.shrink();
     }
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(32, 100, 72, 16),
-      child: MoleDialog(text: text),
+    return SafeArea(
+      top: false,
+
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(32, 100, 72, 8),
+        child: MoleDialog(text: text),
+      ),
     );
   }
 }
