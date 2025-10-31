@@ -16,6 +16,7 @@ class _TicTacTaupeApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
       routerConfig: ref.watch(goRouterProvider),
+      debugShowCheckedModeBanner: false,
       title: 'Tic Tac Taupe',
     );
   }

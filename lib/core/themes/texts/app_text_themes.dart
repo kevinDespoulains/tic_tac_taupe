@@ -19,7 +19,7 @@ class TextThemes {
     body: TextStyle(
       fontSize: 16,
       decoration: TextDecoration.none,
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w500,
     ),
     label1: TextStyle(
       fontSize: 20,

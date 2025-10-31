@@ -173,7 +173,8 @@ class _SelectedIcon extends ConsumerWidget {
 
 enum AppButtonType {
   primary,
-  secondary;
+  secondary,
+  negative;
 
   Color backgroundColor(AppColorThemeData colorTheme) {
     switch (this) {
@@ -181,6 +182,8 @@ enum AppButtonType {
         return colorTheme.primary.base.base;
       case AppButtonType.secondary:
         return colorTheme.surface.surfaceVariant;
+      case AppButtonType.negative:
+        return colorTheme.error.base;
     }
   }
 
@@ -190,6 +193,8 @@ enum AppButtonType {
         return colorTheme.primary.base.on;
       case AppButtonType.secondary:
         return colorTheme.surface.onSurface;
+      case AppButtonType.negative:
+        return colorTheme.error.on;
     }
   }
 
@@ -199,6 +204,8 @@ enum AppButtonType {
         return colorTheme.surface.onSurface;
       case AppButtonType.secondary:
         return colorTheme.surface.borderVariant;
+      case AppButtonType.negative:
+        return colorTheme.surface.onSurface;
     }
   }
 }

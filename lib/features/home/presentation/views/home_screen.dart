@@ -9,6 +9,9 @@ import 'package:tic_tac_taupe/core/widgets/text/app_text.dart';
 import 'package:tic_tac_taupe/features/game_settings/presentation/widgets/bot_difficulty_selection.dart';
 import 'package:tic_tac_taupe/features/navigation/routes.dart';
 
+// TODO(kevin): add animations to this screen
+// TODO(kevin): add music and sound effects ?
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
     super.key,

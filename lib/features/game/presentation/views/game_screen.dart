@@ -2,15 +2,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:tic_tac_taupe/core/themes/assets/assets.dart';
 import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
 import 'package:tic_tac_taupe/core/widgets/logic_loader/logic_loader.dart';
 import 'package:tic_tac_taupe/core/widgets/scaffold/app_scaffold.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_board.dart';
 import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state_notifier.dart';
+import 'package:tic_tac_taupe/features/game/presentation/views/widgets/leave_game_confirmation_modal.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/mole.dart';
-import 'package:tic_tac_taupe/features/navigation/routes.dart';
 
 class GameScreen extends ConsumerWidget {
   const GameScreen({
@@ -61,8 +60,7 @@ class _HomeButton extends StatelessWidget {
     return AppButton(
       leadingIcon: Icons.home,
       onPressed: () {
-        // TODO(kevin): confirm navigation
-        context.go(AppRoutes.home);
+        const LeaveGameConfirmationModal().showMe(context);
       },
     );
   }
