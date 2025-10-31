@@ -42,7 +42,7 @@ final class MoleDialogsStateNotifierProvider
 }
 
 String _$moleDialogsStateNotifierHash() =>
-    r'9f51249550ca9005e4f27ebe2b4f94b5c1b18b6e';
+    r'018cb3b7d3ef43827af84667bf810dfb937821c9';
 
 abstract class _$MoleDialogsStateNotifier extends $Notifier<String?> {
   String? build();

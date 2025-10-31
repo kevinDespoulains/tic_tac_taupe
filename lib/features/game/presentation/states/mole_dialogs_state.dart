@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_game.dart';
 import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state.dart';
@@ -11,11 +12,18 @@ class MoleDialogsStateNotifier extends _$MoleDialogsStateNotifier {
   @override
   String? build() {
     final gameState = ref.watch(ticTacToeGameStateProvider);
+    return generateDialog(gameState);
+  }
+
+  @visibleForTesting
+  String? generateDialog(TicTacToeGame gameState, [Random? random]) {
     String? dialog;
 
     // Dialog when player has two aligned items
     if (gameState.hasPlayerTwoAlignedItems) {
-      dialog = Random().nextBool() ? 'Je vois ce que tu veux faire...' : null;
+      dialog = (random ?? Random()).nextBool()
+          ? 'Je vois ce que tu veux faire...'
+          : null;
     }
 
     if (gameState.nobodyCanWin) {
