@@ -9,7 +9,6 @@ import 'package:tic_tac_taupe/core/widgets/text/app_text.dart';
 import 'package:tic_tac_taupe/features/game_settings/presentation/widgets/bot_difficulty_selection.dart';
 import 'package:tic_tac_taupe/features/navigation/routes.dart';
 
-// TODO(kevin): add animations to this screen
 // TODO(kevin): add music and sound effects ?
 
 class HomeScreen extends StatelessWidget {
@@ -144,17 +143,73 @@ class _MenuTitle extends ConsumerWidget {
   }
 }
 
-class _StartGameButton extends StatelessWidget {
+class _StartGameButton extends StatefulWidget {
   const _StartGameButton();
 
   @override
+  State<_StartGameButton> createState() => _StartGameButtonState();
+}
+
+class _StartGameButtonState extends State<_StartGameButton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    _animation = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 0.0, end: 0.1),
+        weight: 1,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 0.1, end: 0.0),
+        weight: 1,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 0.0, end: -0.1),
+        weight: 1,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: -0.1, end: 0.0),
+        weight: 1,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: -0.0, end: 0.0),
+        weight: 5,
+      ),
+    ]).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return AppButton(
-      text: 'Jouer !',
-      size: AppButtonSize.large,
-      onPressed: () {
-        context.go(AppRoutes.game);
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        return Transform.rotate(
+          angle: _animation.value,
+          child: child,
+        );
       },
+      child: AppButton(
+        text: 'Jouer !',
+        size: AppButtonSize.large,
+        onPressed: () {
+          context.go(AppRoutes.game);
+        },
+      ),
     );
   }
 }

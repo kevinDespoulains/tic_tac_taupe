@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_board.dart
 import 'package:tic_tac_taupe/features/game/presentation/states/mole_dialogs_state.dart';
 import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state_notifier.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/game_over_modal.dart';
+import 'package:tic_tac_taupe/features/game/presentation/views/widgets/help_dialog.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/leave_game_confirmation_modal.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/mole.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/mole_dialog.dart';
@@ -66,7 +68,9 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
       padding: EdgeInsets.all(8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
+        spacing: 8,
         children: [
+          _HelpButton(),
           _HomeButton(),
         ],
       ),
@@ -83,6 +87,20 @@ class _HomeButton extends StatelessWidget {
       leadingIcon: Icons.home,
       onPressed: () {
         const LeaveGameConfirmationModal().showMe(context);
+      },
+    );
+  }
+}
+
+class _HelpButton extends StatelessWidget {
+  const _HelpButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return AppButton(
+      leadingIcon: Icons.question_mark_rounded,
+      onPressed: () {
+        const HelpDialog().showMe(context);
       },
     );
   }
