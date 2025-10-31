@@ -171,14 +171,20 @@ class _Mole extends ConsumerStatefulWidget {
 
 class _MoleState extends ConsumerState<_Mole> {
   bool _isVisible = false;
-  late final AppLoadedAudioPlayer _audioPlayer;
+  late final AppLoadedAudioPlayer _knockAudioPlayer;
+  late final AppLoadedAudioPlayer _diggingAudioPlayer;
 
   @override
   void initState() {
     super.initState();
 
-    // Loads the audio asset to reduce latency on first play.
-    _audioPlayer = ref.read(appAudioPlayerProvider).loadAsset(Assets.boing);
+    // Loads the audio assets to reduce latency on first play.
+    _knockAudioPlayer = ref
+        .read(appAudioPlayerProvider)
+        .loadAsset(Assets.boing);
+    _diggingAudioPlayer = ref
+        .read(appAudioPlayerProvider)
+        .loadAsset(Assets.digging);
 
     // Shows the mole with a random delay to stagger their appearance.
     final random = Random().nextDouble();
@@ -193,6 +199,12 @@ class _MoleState extends ConsumerState<_Mole> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(ticTacToeGameStateProvider, (previous, state) {
+      if (state.board.symbolAt(widget.index) == TicTacToeSymbol.bot &&
+          previous?.board.symbolAt(widget.index) != TicTacToeSymbol.bot) {
+        _diggingAudioPlayer.play(duration: const Duration(milliseconds: 1500));
+      }
+    });
     final (isKnockedOut, isProtected, isPlayerTurn) = ref.watch(
       ticTacToeGameStateProvider.select(
         (notifier) {
@@ -215,7 +227,7 @@ class _MoleState extends ConsumerState<_Mole> {
       onTap: _isVisible && isPlayerTurn
           ? () async {
               try {
-                _audioPlayer.play(
+                _knockAudioPlayer.play(
                   duration: const Duration(milliseconds: 1000),
                   start: const Duration(milliseconds: 100),
                 );
