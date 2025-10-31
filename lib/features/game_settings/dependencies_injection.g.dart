@@ -8,62 +8,51 @@ part of 'dependencies_injection.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Provides the game settings.
 
-@ProviderFor(GameSettingsNotifier)
-const gameSettingsProvider = GameSettingsNotifierProvider._();
+@ProviderFor(gameSettingsRepository)
+const gameSettingsRepositoryProvider = GameSettingsRepositoryProvider._();
 
-/// Provides the game settings.
-final class GameSettingsNotifierProvider
-    extends $NotifierProvider<GameSettingsNotifier, GameSettings> {
-  /// Provides the game settings.
-  const GameSettingsNotifierProvider._()
+final class GameSettingsRepositoryProvider
+    extends
+        $FunctionalProvider<
+          GameSettingsRepository,
+          GameSettingsRepository,
+          GameSettingsRepository
+        >
+    with $Provider<GameSettingsRepository> {
+  const GameSettingsRepositoryProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'gameSettingsProvider',
-        isAutoDispose: false,
+        name: r'gameSettingsRepositoryProvider',
+        isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$gameSettingsNotifierHash();
+  String debugGetCreateSourceHash() => _$gameSettingsRepositoryHash();
 
   @$internal
   @override
-  GameSettingsNotifier create() => GameSettingsNotifier();
+  $ProviderElement<GameSettingsRepository> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  GameSettingsRepository create(Ref ref) {
+    return gameSettingsRepository(ref);
+  }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(GameSettings value) {
+  Override overrideWithValue(GameSettingsRepository value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<GameSettings>(value),
+      providerOverride: $SyncValueProvider<GameSettingsRepository>(value),
     );
   }
 }
 
-String _$gameSettingsNotifierHash() =>
-    r'd2407aaa33f4f771c85bcb245afd43dafdb0f501';
-
-/// Provides the game settings.
-
-abstract class _$GameSettingsNotifier extends $Notifier<GameSettings> {
-  GameSettings build();
-  @$mustCallSuper
-  @override
-  void runBuild() {
-    final created = build();
-    final ref = this.ref as $Ref<GameSettings, GameSettings>;
-    final element =
-        ref.element
-            as $ClassProviderElement<
-              AnyNotifier<GameSettings, GameSettings>,
-              GameSettings,
-              Object?,
-              Object?
-            >;
-    element.handleValue(ref, created);
-  }
-}
+String _$gameSettingsRepositoryHash() =>
+    r'2072e2fc916c27b210325998ba62437518eaa278';

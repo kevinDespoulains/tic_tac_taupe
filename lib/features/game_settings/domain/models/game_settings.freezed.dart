@@ -11,6 +11,7 @@ part of 'game_settings.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
+
 /// @nodoc
 mixin _$GameSettings {
 
@@ -21,6 +22,8 @@ mixin _$GameSettings {
 @pragma('vm:prefer-inline')
 $GameSettingsCopyWith<GameSettings> get copyWith => _$GameSettingsCopyWithImpl<GameSettings>(this as GameSettings, _$identity);
 
+  /// Serializes this GameSettings to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -28,7 +31,7 @@ bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is GameSettings&&(identical(other.botDifficulty, botDifficulty) || other.botDifficulty == botDifficulty));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,botDifficulty);
 
@@ -203,13 +206,13 @@ return $default(_that.botDifficulty);case _:
 }
 
 /// @nodoc
-
+@JsonSerializable()
 
 class _GameSettings implements GameSettings {
-  const _GameSettings({required this.botDifficulty});
-  
+  const _GameSettings({this.botDifficulty = BotDifficulty.medium});
+  factory _GameSettings.fromJson(Map<String, dynamic> json) => _$GameSettingsFromJson(json);
 
-@override final  BotDifficulty botDifficulty;
+@override@JsonKey() final  BotDifficulty botDifficulty;
 
 /// Create a copy of GameSettings
 /// with the given fields replaced by the non-null parameter values.
@@ -217,14 +220,17 @@ class _GameSettings implements GameSettings {
 @pragma('vm:prefer-inline')
 _$GameSettingsCopyWith<_GameSettings> get copyWith => __$GameSettingsCopyWithImpl<_GameSettings>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$GameSettingsToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
   return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameSettings&&(identical(other.botDifficulty, botDifficulty) || other.botDifficulty == botDifficulty));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,botDifficulty);
 

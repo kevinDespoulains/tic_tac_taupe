@@ -5,7 +5,7 @@ import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_game.dart'
 import 'package:tic_tac_taupe/features/game/domain/repositories/tic_tac_toe_game_repository.dart';
 
 /// Repository implementation for managing Tic Tac Toe game data.
-class TicTacToeGameRepositoryImpl extends TicTacToeGameRepository {
+class TicTacToeGameRepositoryImpl implements TicTacToeGameRepository {
   const TicTacToeGameRepositoryImpl({
     required TicTacToeBotAi botAi,
   }) : _botAi = botAi;

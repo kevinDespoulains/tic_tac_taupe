@@ -48,7 +48,7 @@ final class TicTacToeBotAiProvider
   }
 }
 
-String _$ticTacToeBotAiHash() => r'6379031b8fdae83b527f952e54b6cfecfd4c7356';
+String _$ticTacToeBotAiHash() => r'58e8d73ddbcc658048ea0a1ae2f1f4f4bf690f44';
 
 @ProviderFor(ticTacToeGameRepository)
 const ticTacToeGameRepositoryProvider = TicTacToeGameRepositoryProvider._();
