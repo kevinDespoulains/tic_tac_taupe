@@ -24,6 +24,68 @@ void main() {
     });
   });
 
+  group('MediumTicTacToeBotAi', () {
+    test('always returns a valid move', () async {
+      const ai = MediumTicTacToeBotAi();
+      const board = TicTacToeBoard(
+        cells: [
+          TicTacToeSymbol.player,
+          null,
+          TicTacToeSymbol.bot,
+          null,
+          TicTacToeSymbol.player,
+          null,
+          null,
+          null,
+          null,
+        ],
+      );
+      final move = await ai.getNextCellMove(board);
+      expect(board.isCellEmpty(move), isTrue);
+    });
+
+    test('behaves like Hard AI when probability is 1.0', () async {
+      const ai = MediumTicTacToeBotAi(optimalMoveProbability: 1.0);
+      const board = TicTacToeBoard(
+        cells: [
+          TicTacToeSymbol.player,
+          TicTacToeSymbol.player,
+          null, // Player can win at 2
+          TicTacToeSymbol.bot,
+          null,
+          null,
+          null,
+          null,
+          null,
+        ],
+      );
+      // It should block the player
+      final move = await ai.getNextCellMove(board);
+      expect(move, 2);
+    });
+
+    test('returns a valid move when probability is 0.0', () async {
+      // When probability is 0, it should behave like Easy AI (random).
+      // We can't assert a specific move, but we can ensure it's valid.
+      const ai = MediumTicTacToeBotAi(optimalMoveProbability: 0.0);
+      const board = TicTacToeBoard(
+        cells: [
+          TicTacToeSymbol.player,
+          TicTacToeSymbol.player,
+          null,
+          TicTacToeSymbol.bot,
+          null,
+          null,
+          null,
+          null,
+          null,
+        ],
+      );
+      final move = await ai.getNextCellMove(board);
+      expect(board.isCellEmpty(move), isTrue);
+    });
+  });
+
   group('HardTicTacToeBotAi', () {
     test('blocks player from winning', () async {
       const ai = HardTicTacToeBotAi();

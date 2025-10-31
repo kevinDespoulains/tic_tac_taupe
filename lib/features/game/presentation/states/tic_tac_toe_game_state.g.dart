@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tic_tac_toe_game_state_notifier.dart';
+part of 'tic_tac_toe_game_state.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -42,7 +42,7 @@ final class TicTacToeGameStateNotifierProvider
 }
 
 String _$ticTacToeGameStateNotifierHash() =>
-    r'd17d339c26bc1401278f80cd5eeabb1ba347907c';
+    r'f282f158051b6c7b5525cda0d34b2b9bf96972ab';
 
 abstract class _$TicTacToeGameStateNotifier extends $Notifier<TicTacToeGame> {
   TicTacToeGame build();

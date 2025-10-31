@@ -6,7 +6,7 @@ import 'package:tic_tac_taupe/features/game/domain/models/invalid_move_exception
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_game.dart';
 import 'package:tic_tac_taupe/features/game/domain/repositories/tic_tac_toe_game_repository.dart';
 
-part 'tic_tac_toe_game_state_notifier.g.dart';
+part 'tic_tac_toe_game_state.g.dart';
 
 @riverpod
 class TicTacToeGameStateNotifier extends _$TicTacToeGameStateNotifier {
@@ -16,8 +16,8 @@ class TicTacToeGameStateNotifier extends _$TicTacToeGameStateNotifier {
   TicTacToeGame build() => const TicTacToeGame();
 
   /// Initializes the game state with a new game.
-  void resetGame() {
-    final random = Random();
+  void resetGame({Random? random}) {
+    random ??= Random();
     state = TicTacToeGame(isPlayerTurn: random.nextBool());
 
     if (!state.isPlayerTurn) {

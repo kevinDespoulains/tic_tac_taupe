@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_game.dart';
-import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state_notifier.dart';
+import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state.dart';
 
 part 'mole_dialogs_state.g.dart';
 

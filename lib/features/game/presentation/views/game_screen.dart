@@ -12,7 +12,7 @@ import 'package:tic_tac_taupe/core/widgets/scaffold/app_scaffold.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/invalid_move_exception.dart';
 import 'package:tic_tac_taupe/features/game/domain/models/tic_tac_toe_board.dart';
 import 'package:tic_tac_taupe/features/game/presentation/states/mole_dialogs_state.dart';
-import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state_notifier.dart';
+import 'package:tic_tac_taupe/features/game/presentation/states/tic_tac_toe_game_state.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/game_over_modal.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/help_dialog.dart';
 import 'package:tic_tac_taupe/features/game/presentation/views/widgets/leave_game_confirmation_modal.dart';
