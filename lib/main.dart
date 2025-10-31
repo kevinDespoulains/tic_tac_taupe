@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rive/rive.dart';
+import 'package:tic_tac_taupe/core/dependencies_injection.dart';
+import 'package:tic_tac_taupe/core/themes/assets/assets.dart';
+import 'package:tic_tac_taupe/core/widgets/logic_loader/logic_loader.dart';
 import 'package:tic_tac_taupe/features/navigation/router.dart';
 
 Future<void> main() async {
@@ -14,10 +17,15 @@ class _TicTacTaupeApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp.router(
-      routerConfig: ref.watch(goRouterProvider),
-      debugShowCheckedModeBanner: false,
-      title: 'Tic Tac Taupe',
+    return LogicLoader(
+      onLoad: (context) async {
+        await ref.read(appAudioPlayerProvider).play(Assets.music, loop: true);
+      },
+      child: MaterialApp.router(
+        routerConfig: ref.watch(goRouterProvider),
+        debugShowCheckedModeBanner: false,
+        title: 'Tic Tac Taupe',
+      ),
     );
   }
 }

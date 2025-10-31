@@ -50,3 +50,44 @@ final class AppLocalStorageProvider
 }
 
 String _$appLocalStorageHash() => r'de57e52fe028b25e87823e93ee043589246e931e';
+
+@ProviderFor(appAudioPlayer)
+const appAudioPlayerProvider = AppAudioPlayerProvider._();
+
+final class AppAudioPlayerProvider
+    extends $FunctionalProvider<AppAudioPlayer, AppAudioPlayer, AppAudioPlayer>
+    with $Provider<AppAudioPlayer> {
+  const AppAudioPlayerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'appAudioPlayerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$appAudioPlayerHash();
+
+  @$internal
+  @override
+  $ProviderElement<AppAudioPlayer> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AppAudioPlayer create(Ref ref) {
+    return appAudioPlayer(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AppAudioPlayer value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AppAudioPlayer>(value),
+    );
+  }
+}
+
+String _$appAudioPlayerHash() => r'afce71974eb27e89d2bee556eccf8895618d0b67';

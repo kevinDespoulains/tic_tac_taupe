@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tic_tac_taupe/core/audio/app_audio_player.dart';
+import 'package:tic_tac_taupe/core/dependencies_injection.dart';
 import 'package:tic_tac_taupe/core/themes/assets/assets.dart';
 import 'package:tic_tac_taupe/core/widgets/button/app_button.dart';
 import 'package:tic_tac_taupe/core/widgets/logic_loader/logic_loader.dart';
@@ -169,10 +171,16 @@ class _Mole extends ConsumerStatefulWidget {
 
 class _MoleState extends ConsumerState<_Mole> {
   bool _isVisible = false;
+  late final AppLoadedAudioPlayer _audioPlayer;
 
   @override
   void initState() {
     super.initState();
+
+    // Loads the audio asset to reduce latency on first play.
+    _audioPlayer = ref.read(appAudioPlayerProvider).loadAsset(Assets.boing);
+
+    // Shows the mole with a random delay to stagger their appearance.
     final random = Random().nextDouble();
     Future.delayed(Duration(milliseconds: (random * 1000).floor()), () {
       if (mounted) {
@@ -207,6 +215,11 @@ class _MoleState extends ConsumerState<_Mole> {
       onTap: _isVisible && isPlayerTurn
           ? () async {
               try {
+                _audioPlayer.play(
+                  duration: const Duration(milliseconds: 1000),
+                  start: const Duration(milliseconds: 100),
+                );
+
                 await ref
                     .read(ticTacToeGameStateProvider.notifier)
                     .addPlayerSymbol(widget.index);
